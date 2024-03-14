@@ -70,7 +70,7 @@ public class LinkedListDeque <T> implements Deque<T>{
 
     @Override
     public T get(int index) {
-        Node<T>tmp = sentinel;
+        Node<T> tmp = sentinel;
         int i=0;
         do {
             tmp = tmp.next;
@@ -81,6 +81,14 @@ public class LinkedListDeque <T> implements Deque<T>{
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        if (index < 0 || index >= size())
+        {
+            throw new IndexOutOfBoundsException("Index"+index+"is out of bounds");
+        }
+       return getRecursiveHelper(sentinel.next,index);
+    }
+    public T getRecursiveHelper(Node<T> node,int index){
+        if (index == 0) return node.next.data;
+        return getRecursiveHelper(node.next,index-1);
     }
 }
