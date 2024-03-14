@@ -117,8 +117,8 @@ public class LinkedListDequeTest {
         lld1.addFirst(4);
         lld1.addFirst(5);
 
-        assertThat(lld1.get(2)).isEqualTo(4);
-        assertThat(lld1.get(5)).isEqualTo(1);
+        assertThat(lld1.get(2)).isEqualTo(3);
+        assertThat(lld1.get(4)).isEqualTo(1);
 
 
     }
