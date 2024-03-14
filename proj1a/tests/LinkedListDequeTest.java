@@ -103,4 +103,23 @@ public class LinkedListDequeTest {
         assertThat(lld1.size()).isAtMost(4);
 
     }
+    @Test
+    /**   In this test, we check the get()     */
+    public void getTestBasic() {
+        Deque<Integer> lld1 = new LinkedListDeque<>();
+
+        assertThat(lld1.get(100)).isNull();
+        assertThat(lld1.get(-1)).isNull();
+
+        lld1.addFirst(1);
+        lld1.addFirst(2);
+        lld1.addFirst(3);
+        lld1.addFirst(4);
+        lld1.addFirst(5);
+
+        assertThat(lld1.get(2)).isEqualTo(4);
+        assertThat(lld1.get(5)).isEqualTo(1);
+
+
+    }
 }
