@@ -139,4 +139,27 @@ public class LinkedListDequeTest {
         assertThat(lld1.getRecursive(2)).isEqualTo(3);
         assertThat(lld1.getRecursive(4)).isEqualTo(1);
     }
+    @Test
+    /** In this test,we check the removeFirst() & removeLast() */
+    public void removeFirstAndRemoveLastTest(){
+        Deque<Integer> lld1 = new LinkedListDeque<>();
+
+        assertThat(lld1.removeFirst()).isNull();
+        assertThat(lld1.removeLast()).isNull();
+
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        lld1.removeLast();    // [-2, -1, 0, 1]
+
+        assertThat(lld1.toList()).containsExactly(-2,-1,0,1).inOrder();
+
+        lld1.removeFirst();   // [-1, 0, 1]
+
+        assertThat(lld1.toList()).containsExactly(-1,0,1).inOrder();
+
+    }
 }

@@ -60,12 +60,26 @@ public class LinkedListDeque <T> implements Deque<T>{
 
     @Override
     public T removeFirst() {
-        return null;
+        if (isEmpty()) return null;
+        Node<T> tmp = sentinel.next;
+        sentinel.next = tmp.next;
+        tmp.next.prev = sentinel;
+        tmp.next = null;
+        tmp.prev = null;
+        len--;
+        return tmp.data;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if (isEmpty())  return null;
+        Node<T> tmp = sentinel.prev;
+        sentinel.prev = tmp.prev;
+        tmp.prev.next = sentinel;
+        tmp.next = null;
+        tmp.prev = null;
+        len--;
+        return tmp.data;
     }
 
     @Override
@@ -81,11 +95,9 @@ public class LinkedListDeque <T> implements Deque<T>{
 
     @Override
     public T getRecursive(int index) {
-        if (index < 0 || index >= size())
-        {
-            throw new IndexOutOfBoundsException("Index"+index+"is out of bounds");
-        }
-       return getRecursiveHelper(sentinel.next,index);
+        if (index < 0 || index >= size()) return null;
+
+       return getRecursiveHelper(sentinel,index);
     }
     public T getRecursiveHelper(Node<T> node,int index){
         if (index == 0) return node.next.data;
